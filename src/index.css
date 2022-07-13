@@ -1,3 +1,11 @@
-input{
-    padding: 10px !important;
+* {
+  font-size: 12px;
+}
+input {
+  padding: 10px !important;
+}
+.error {
+  margin: 5px;
+  color: red;
+  font-size: 13px;
 }

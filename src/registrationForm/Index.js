@@ -5,26 +5,32 @@ import { Typography } from "@mui/material";
 import Form from "./components/Form";
 function Index() {
   return (
-    <Box sx={{ flexGrow: 1 ,px:10}}>
+    <Box sx={{ flexGrow: 1, px: 10 }}>
       <Grid container spacing={2}>
-        <Grid sx={{height:'80vh'}} item xs={5}>
+        <Grid item xs={5}>
           <Box
             sx={{
               backgroundImage:
-                "url(https://th.bing.com/th/id/R.f5a67251bd8637be06e850a6396aeca1?rik=9TbcO7%2b4BGHHAQ&pid=ImgRaw&r=0&sres=1&sresct=1)",
-                backgroundPosition:'center',
-                backgroundSize:'contain',
-                width:'100%',
-                height:'100%',
-                backgroundRepeat:'no-repeat'
+                "url(https://th.bing.com/th/id/OIP.rHfngg7xoXexzqluWs7QGwAAAA?pid=ImgDet&w=320&h=438&rs=1)",
+              backgroundPosition: "center",
+              backgroundSize: "contain",
+              width: "100%",
+              height: "100%",
+              backgroundRepeat: "no-repeat",
             }}
-          />
+          >
+            <img width='60px' src="https://th.bing.com/th/id/R.d2397d85a7a69ead0fe1e633ceb7cd3a?rik=67F1AyBojBHRKQ&riu=http%3a%2f%2fwww.bardfieldacademy.org%2fwp-content%2fuploads%2f2016%2f08%2f00106-3D-company-logos-design-free-logo-online-02.png&ehk=HuvO81GLFETyABJ3KJflbBMHSbVgN9%2fvNNNALxwNe2c%3d&risl=&pid=ImgRaw&r=0" />
+          </Box>
         </Grid>
         <Grid item xs={7}>
+          <Box sx={{ m: 5 }}>
             <Box>
-                <Typography variant="h5">Regstration</Typography>
-                <Form/>
+              <Typography variant="h4" sx={{ py: 2, fontWeight: "bold" }}>
+                Registration
+              </Typography>
             </Box>
+            <Form />
+          </Box>
         </Grid>
       </Grid>
     </Box>

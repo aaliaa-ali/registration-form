@@ -8,8 +8,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import RadioButtons from "./RadioButton";
+import Label from "./Label";
 
 function Form() {
+  const placeHolder = "Please Enter Your";
   const [value, setValue] = useState();
 
   const paswordRegex =
@@ -30,6 +33,7 @@ function Form() {
     position: "",
     password: "",
     confirmPassword: "",
+    gender: "",
   };
 
   const schema = yup
@@ -38,20 +42,28 @@ function Form() {
         .string()
         .required("Name is Required!")
         .matches(
-          /^[a-zA-Z](([\._\-][a-zA-Z0-9])|[a-zA-Z0-9])*[a-z0-9]$/,
+          /^(([a-zA-Z0-9])|[a-zA-Z0-9])*[a-z0-9]$/,
           "Full Name accept characters and Numbers only"
         ),
+      phone: yup.string().required("Phone is Required!"),
       email: yup
         .string()
         .required("Email is Required!")
         .email("Please enter Valid Email!"),
+      position: yup.string().required("Position is Required!"),
+      gender: yup.string().required("Gender is Required!"),
       password: yup
         .string()
-        .required()
+        .required("Password is Required!")
+        .min(8, "Minimum Eight characters")
         .matches(
           paswordRegex,
-          "Minimum eight characters, at least one upper case English letter, one lower case English letter, one number and one special character"
+          "Password Should Contain at least one upper case English letter, one lower case English letter, one number and one special character"
         ),
+      confirmPassword: yup
+        .string()
+        .required("confirmPassword is Required!")
+        .oneOf([yup.ref("password"), null], "Passwords must match"),
       country: yup.string().required("Country is Required!"),
       city: yup.string().required("City is Required!"),
     })
@@ -61,14 +73,14 @@ function Form() {
     register,
     handleSubmit,
     formState: { errors },
+    
   } = useForm({
     defaultValues: initialValues,
     resolver: yupResolver(schema),
-    mode: "onBlur",
+    mode: "onChange",
   });
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {console.log(errors)}
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <InputField
@@ -84,7 +96,7 @@ function Form() {
             placeHolder="--Please Select--"
             label="Postition You Are Applying For"
             values={positiosn}
-            errors={errors.positiosn}
+            errors={errors.position}
           />
         </Grid>
         <Grid item xs={6}>
@@ -92,46 +104,63 @@ function Form() {
             register={{ ...register("email") }}
             label="Email"
             errors={errors.email}
-            placeHolder="Please Enter Your "
+            placeHolder={`${placeHolder} email`}
           />
         </Grid>
         <Grid item xs={6}>
-            <label>phone</label>
+          <Label label="Phone" />
           <PhoneInput
-            register={{ ...register("phone") }}
+            {...register("phone")}
             international
             defaultCountry="RU"
             value={value}
             onChange={setValue}
           />
+          {errors.phone ? (
+            <p className="error">{errors?.phone?.message}</p>
+          ) : (
+            ""
+          )}
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("country") }}
             label="Country"
-            placeHolder="Please Enter Your "
+            placeHolder="Please Enter Your country"
+            errors={errors.country}
           />
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("city") }}
             label="City"
-            placeHolder="Please Enter Your "
+            placeHolder="Please Enter Your city"
+            errors={errors.city}
           />
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("password") }}
             label="Password"
-            placeHolder="Please Enter Your "
+            placeHolder="Please Enter Your password"
+            errors={errors.password}
           />
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("confirmPassword") }}
             label="Confirm Password"
-            placeHolder="Please Enter Your "
+            placeHolder="Please Enter Your confirmPassword "
+            errors={errors.confirmPassword}
           />
+        </Grid>
+        <Grid item xs={12}>
+          <RadioButtons label="Gender" register={{ ...register("gender") }} />
+          {errors.gender ? (
+            <p className="error">{errors?.gender?.message}</p>
+          ) : (
+            ""
+          )}
         </Grid>
       </Grid>
       <Button
