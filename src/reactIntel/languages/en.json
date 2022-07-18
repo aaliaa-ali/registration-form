@@ -1,0 +1,22 @@
+{
+  "register": "Register",
+  "name": "Name",
+  "phone": "Phone number",
+  "position": "Position You area Applying For",
+  "country": "Country",
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "gender": "Gender",
+  "city": "City",
+  "submit": "Submit",
+  "placeHolder": "Please Enter Your",
+
+  "male": "Male",
+  "femele": "Femele",
+  "other": "Other",
+  "preferNotToSay": "Prefer not to say",
+  "requiredError":"This Field Is Required"
+
+
+}

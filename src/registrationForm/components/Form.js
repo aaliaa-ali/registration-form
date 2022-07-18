@@ -10,20 +10,26 @@ import "react-phone-number-input/style.css";
 import RadioButtons from "./RadioButton";
 import PhoneInputField from "./PhoneInputField";
 import { useTranslation } from "react-i18next";
+import { FormattedMessage, useIntl } from "react-intl";
 
 function Form() {
+  const intel = useIntl();
   const { t } = useTranslation();
-
-  const placeHolder = t("placeHolder");
-
+  const formatedText = (id) => {
+    return intel.formatMessage({ id: id });
+  };
+  const placeHolder = formatedText("placeHolder");
   const paswordRegex =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
-    const genders = [
-      { key: "male", value: t("gender.male") },
-      { key: "female", value: t("gender.femele")  },
-      { key: "other", value: t("gender.other")  },
-      { key: "Prefer not to say", value: t("gender.preferNotToSay")  },
-    ];
+  const genders = [
+    { key: "male", value: <FormattedMessage id="male" /> },
+    { key: "female", value: <FormattedMessage id="femele" /> },
+    { key: "other", value: <FormattedMessage id="other" /> },
+    {
+      key: "Prefer not to say",
+      value: <FormattedMessage id="preferNotToSay" />,
+    },
+  ];
   const positiosn = [
     { key: 0, value: "Front End" },
     { key: 1, value: "Back End" },
@@ -46,7 +52,7 @@ function Form() {
     .object({
       fullName: yup
         .string()
-        .required("Name is Required!")
+        .required(formatedText('requiredError'))
         .matches(
           /^(([a-zA-Z0-9])|[a-zA-Z0-9])*[a-z0-9]$/,
           "Full Name accept characters and Numbers only"
@@ -54,13 +60,13 @@ function Form() {
       phone: yup.string().required("Phone is Required!"),
       email: yup
         .string()
-        .required("Email is Required!")
+        .required(formatedText('requiredError'))
         .email("Please enter Valid Email!"),
       position: yup.string().required("Position is Required!"),
       gender: yup.string().required("Gender is Required!"),
       password: yup
         .string()
-        .required("Password is Required!")
+        .required(formatedText('requiredError'))
         .min(8, "Minimum Eight characters")
         .matches(
           paswordRegex,
@@ -68,7 +74,7 @@ function Form() {
         ),
       confirmPassword: yup
         .string()
-        .required("confirmPassword is Required!")
+        .required(formatedText('requiredError'))
         .oneOf([yup.ref("password"), null], "Passwords must match"),
       country: yup.string().required("Country is Required!"),
       city: yup.string().required("City is Required!"),
@@ -90,15 +96,15 @@ function Form() {
         <Grid item xs={6}>
           <InputField
             register={{ ...register("fullName") }}
-            label={t("labels.name")}
-            placeHolder={`${placeHolder} ${t("labels.name")}`}
+            label={t("name")}
+            placeHolder={`${placeHolder} ${formatedText("name")}`}
             errors={errors.fullName}
           />
         </Grid>
         <Grid item xs={6}>
           <DropDown
             register={{ ...register("position") }}
-            placeHolder="--Please Select--"
+            placeHolder="__Please Select__"
             label="Postition You Are Applying For"
             values={positiosn}
             errors={errors.position}
@@ -107,39 +113,39 @@ function Form() {
         <Grid item xs={6}>
           <InputField
             register={{ ...register("email") }}
-            label={t("labels.email")}
+            label={t("email")}
             errors={errors.email}
-            placeHolder={`${placeHolder} ${t("labels.email")}`}
+            placeHolder={`${placeHolder} ${formatedText("email")}`}
           />
         </Grid>
         <Grid item xs={6}>
           <PhoneInputField
             register={{ ...register("phone") }}
-            label={t("labels.phone")}
+            label={t("phone")}
             errors={errors.phone}
           />
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("country") }}
-            label={t("labels.country")}
-            placeHolder={`${placeHolder} ${t("labels.country")}`}
+            label={t("country")}
+            placeHolder={`${placeHolder} ${formatedText("country")}`}
             errors={errors.country}
           />
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("city") }}
-            label={t("labels.city")}
-            placeHolder={`${placeHolder} ${t("labels.city")}`}
+            label={t("city")}
+            placeHolder={`${placeHolder} ${formatedText("city")}`}
             errors={errors.city}
           />
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("password") }}
-            label={t("labels.password")}
-            placeHolder={`${placeHolder} ${t("labels.password")}`}
+            label={t("password")}
+            placeHolder={`${placeHolder} ${formatedText("password")}`}
             errors={errors.password}
             type="password"
           />
@@ -147,15 +153,15 @@ function Form() {
         <Grid item xs={6}>
           <InputField
             register={{ ...register("confirmPassword") }}
-            label={t("labels.confirmPassword")}
-            placeHolder={`${placeHolder} ${t("labels.confirmPassword")}`}
+            label={t("confirmPassword")}
+            placeHolder={`${placeHolder} ${formatedText("confirmPassword")}`}
             errors={errors.confirmPassword}
             type="password"
           />
         </Grid>
         <Grid item xs={12}>
           <RadioButtons
-            label={t("labels.gender")}
+            label={formatedText("gender")}
             register={{ ...register("gender") }}
             genders={genders}
           />

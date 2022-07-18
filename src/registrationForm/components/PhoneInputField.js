@@ -17,12 +17,11 @@ function PhoneInputField(props) {
       <PhoneInput
         {...register}
         international
-        defaultCountry="RU"
         value={value}
         onChange={setValue}
       />
-      {errors ? <p className="error">{errors?.message}</p> : ""}
-      {!isValidPhoneNumber(`${value}`)&&errors ? (
+      {errors && !value ? <p className="error">{errors?.message}</p> : ""}
+      {!isValidPhoneNumber(`${value}`)&&value ? (
         <p className="error">Invalid Phone Number</p>
       ) : (
         ""

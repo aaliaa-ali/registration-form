@@ -3,11 +3,9 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import Form from "./components/Form";
-import { useTranslation } from "react-i18next";
 import LanguageToggler from "./LanguageToggler";
-
+import {FormattedMessage} from 'react-intl'
 function Index() {
-  const { t } = useTranslation();
 
   return (
     <Box sx={{ flexGrow: 1, px: 10 }}>
@@ -34,7 +32,7 @@ function Index() {
           <Box sx={{ m: 5 }}>
             <Box>
               <Typography variant="h4" sx={{ py: 2, fontWeight: "bold" }}>
-                {t("register")}
+                <FormattedMessage id="register"/>
                 <LanguageToggler />
               </Typography>
             </Box>

@@ -1,0 +1,24 @@
+{
+  "register": "انشاء حساب",
+
+  "name": "الاسم",
+  "phone": "رقم الهاتف",
+  "position": "المنصب ",
+  "country": "الدوله",
+  "email": "البريد الالكتروني",
+  "password": "الرمز السري",
+  "confirmPassword": "تأكيد الرمز السري",
+  "gender": "النوع",
+  "city": "المدينه",
+  "submit": "المتابعه",
+
+  "placeHolder": "برجاء ادخال",
+
+  "male": "ذكر",
+  "femele": "انثي",
+  "other": "اخر",
+  "preferNotToSay": "Prefer not to say",
+
+  "requiredError":"!هذا الحقل مطلوب"
+
+}
