@@ -20,7 +20,7 @@ function DropDown(props) {
       <Label label={label} />
       <FormControl sx={{ width: "100%" }}>
         <InputLabel id="demo-simple-select-autowidth-label">
-          position
+          {placeHolder}
         </InputLabel>
         <Select
           {...register}
@@ -29,7 +29,7 @@ function DropDown(props) {
           value={age}
           onChange={handleChange}
           autoWidth
-          label="position"
+          label={placeHolder}
         >
           {values.map((element) => {
             return (

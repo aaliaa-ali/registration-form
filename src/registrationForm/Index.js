@@ -3,7 +3,12 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import Form from "./components/Form";
+import { useTranslation } from "react-i18next";
+import LanguageToggler from "./LanguageToggler";
+
 function Index() {
+  const { t } = useTranslation();
+
   return (
     <Box sx={{ flexGrow: 1, px: 10 }}>
       <Grid container spacing={2}>
@@ -19,14 +24,18 @@ function Index() {
               backgroundRepeat: "no-repeat",
             }}
           >
-            <img width='60px' src="https://th.bing.com/th/id/R.d2397d85a7a69ead0fe1e633ceb7cd3a?rik=67F1AyBojBHRKQ&riu=http%3a%2f%2fwww.bardfieldacademy.org%2fwp-content%2fuploads%2f2016%2f08%2f00106-3D-company-logos-design-free-logo-online-02.png&ehk=HuvO81GLFETyABJ3KJflbBMHSbVgN9%2fvNNNALxwNe2c%3d&risl=&pid=ImgRaw&r=0" />
+            <img
+              width="60px"
+              src="https://th.bing.com/th/id/R.d2397d85a7a69ead0fe1e633ceb7cd3a?rik=67F1AyBojBHRKQ&riu=http%3a%2f%2fwww.bardfieldacademy.org%2fwp-content%2fuploads%2f2016%2f08%2f00106-3D-company-logos-design-free-logo-online-02.png&ehk=HuvO81GLFETyABJ3KJflbBMHSbVgN9%2fvNNNALxwNe2c%3d&risl=&pid=ImgRaw&r=0"
+            />
           </Box>
         </Grid>
         <Grid item xs={7}>
           <Box sx={{ m: 5 }}>
             <Box>
               <Typography variant="h4" sx={{ py: 2, fontWeight: "bold" }}>
-                Registration
+                {t("register")}
+                <LanguageToggler />
               </Typography>
             </Box>
             <Form />

@@ -6,18 +6,24 @@ import DropDown from "./DropDown";
 import { Button } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import RadioButtons from "./RadioButton";
-import Label from "./Label";
+import PhoneInputField from "./PhoneInputField";
+import { useTranslation } from "react-i18next";
 
 function Form() {
-  const placeHolder = "Please Enter Your";
-  const [value, setValue] = useState();
+  const { t } = useTranslation();
+
+  const placeHolder = t("placeHolder");
 
   const paswordRegex =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
-
+    const genders = [
+      { key: "male", value: t("gender.male") },
+      { key: "female", value: t("gender.femele")  },
+      { key: "other", value: t("gender.other")  },
+      { key: "Prefer not to say", value: t("gender.preferNotToSay")  },
+    ];
   const positiosn = [
     { key: 0, value: "Front End" },
     { key: 1, value: "Back End" },
@@ -73,11 +79,10 @@ function Form() {
     register,
     handleSubmit,
     formState: { errors },
-    
   } = useForm({
     defaultValues: initialValues,
     resolver: yupResolver(schema),
-    mode: "onChange",
+    mode: "onTouched",
   });
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -85,8 +90,8 @@ function Form() {
         <Grid item xs={6}>
           <InputField
             register={{ ...register("fullName") }}
-            label="Full Name"
-            placeHolder="Please Enter Your "
+            label={t("labels.name")}
+            placeHolder={`${placeHolder} ${t("labels.name")}`}
             errors={errors.fullName}
           />
         </Grid>
@@ -102,60 +107,58 @@ function Form() {
         <Grid item xs={6}>
           <InputField
             register={{ ...register("email") }}
-            label="Email"
+            label={t("labels.email")}
             errors={errors.email}
-            placeHolder={`${placeHolder} email`}
+            placeHolder={`${placeHolder} ${t("labels.email")}`}
           />
         </Grid>
         <Grid item xs={6}>
-          <Label label="Phone" />
-          <PhoneInput
-            {...register("phone")}
-            international
-            defaultCountry="RU"
-            value={value}
-            onChange={setValue}
+          <PhoneInputField
+            register={{ ...register("phone") }}
+            label={t("labels.phone")}
+            errors={errors.phone}
           />
-          {errors.phone ? (
-            <p className="error">{errors?.phone?.message}</p>
-          ) : (
-            ""
-          )}
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("country") }}
-            label="Country"
-            placeHolder="Please Enter Your country"
+            label={t("labels.country")}
+            placeHolder={`${placeHolder} ${t("labels.country")}`}
             errors={errors.country}
           />
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("city") }}
-            label="City"
-            placeHolder="Please Enter Your city"
+            label={t("labels.city")}
+            placeHolder={`${placeHolder} ${t("labels.city")}`}
             errors={errors.city}
           />
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("password") }}
-            label="Password"
-            placeHolder="Please Enter Your password"
+            label={t("labels.password")}
+            placeHolder={`${placeHolder} ${t("labels.password")}`}
             errors={errors.password}
+            type="password"
           />
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("confirmPassword") }}
-            label="Confirm Password"
-            placeHolder="Please Enter Your confirmPassword "
+            label={t("labels.confirmPassword")}
+            placeHolder={`${placeHolder} ${t("labels.confirmPassword")}`}
             errors={errors.confirmPassword}
+            type="password"
           />
         </Grid>
         <Grid item xs={12}>
-          <RadioButtons label="Gender" register={{ ...register("gender") }} />
+          <RadioButtons
+            label={t("labels.gender")}
+            register={{ ...register("gender") }}
+            genders={genders}
+          />
           {errors.gender ? (
             <p className="error">{errors?.gender?.message}</p>
           ) : (
@@ -168,7 +171,7 @@ function Form() {
         type="submit"
         variant="contained"
       >
-        Submit
+        {t("submit")}
       </Button>
     </form>
   );

@@ -1,11 +1,10 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
-import  Typography  from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Label from "./Label";
 
 function InputField(props) {
-  const { placeHolder, label, register, errors } = props;
+  const { placeHolder, label, register, errors ,...rest} = props;
   return (
     <Box>
       <Label label={label} />
@@ -13,8 +12,8 @@ function InputField(props) {
       error={!!errors}
         {...register}
         sx={{ width: "100%" }}
-        id="demo-helper-text-misaligned-no-helper"
         placeholder={placeHolder}
+        {...rest}
       />
       {errors ? <p className="error">{errors?.message}</p> : ""}
     </Box>

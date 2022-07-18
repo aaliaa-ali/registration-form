@@ -8,13 +8,8 @@ import Typography from "@mui/material/Typography";
 import Label from "./Label";
 
 export default function RadioButtons(props) {
-  const { label, register } = props;
-  const genders = [
-    { key: "male", value: "Male" },
-    { key: "female", value: "Female" },
-    { key: "other", value: "Other" },
-    { key: "Prefer not to say", value: "Prefer not to say" },
-  ];
+  const { label, register, genders } = props;
+ 
   return (
     <FormControl {...register}>
       <Label label={label} />
