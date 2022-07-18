@@ -8,7 +8,7 @@ import { Typography } from "@mui/material";
 import Label from "./Label";
 
 function DropDown(props) {
-  const { placeHolder, label, register, values } = props;
+  const { placeHolder, label, register, values, errors } = props;
 
   const [age, setAge] = React.useState("");
 
@@ -18,7 +18,23 @@ function DropDown(props) {
   return (
     <div>
       <Label label={label} />
-      <FormControl sx={{ width: "100%" }}>
+      <FormControl sx={{ width: "100%" }} size="small">
+        <Select displayEmpty value={age} {...register} onChange={handleChange}>
+          <MenuItem value="" disabled>
+            <em>{placeHolder}</em>
+          </MenuItem>
+          {values.map((element) => {
+            return (
+              <MenuItem key={element.key} value={element.key}>
+                {element.value}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
+      {errors ? <p className="error">{errors?.message}</p> : ""}
+
+      {/* <FormControl sx={{ width: "100%" }}>
         <InputLabel id="demo-simple-select-autowidth-label">
           {placeHolder}
         </InputLabel>
@@ -39,7 +55,7 @@ function DropDown(props) {
             );
           })}
         </Select>
-      </FormControl>
+      </FormControl> */}
     </div>
   );
 }

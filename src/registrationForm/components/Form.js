@@ -13,12 +13,13 @@ import { useTranslation } from "react-i18next";
 import { FormattedMessage, useIntl } from "react-intl";
 
 function Form() {
-  const intel = useIntl();
+  const intel=useIntl()
   const { t } = useTranslation();
-  const formatedText = (id) => {
-    return intel.formatMessage({ id: id });
-  };
-  const placeHolder = formatedText("placeHolder");
+
+  const fomatedText=(id)=>{
+    return intel.formatMessage({ id: id })
+  }
+  const placeHolder = fomatedText('placeHolder' );
   const paswordRegex =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
   const genders = [
@@ -52,32 +53,31 @@ function Form() {
     .object({
       fullName: yup
         .string()
-        .required(formatedText('requiredError'))
+        .required(fomatedText('requiredError'))
         .matches(
           /^(([a-zA-Z0-9])|[a-zA-Z0-9])*[a-z0-9]$/,
-          "Full Name accept characters and Numbers only"
+          fomatedText('nameInvalid')
         ),
-      phone: yup.string().required("Phone is Required!"),
+      phone: yup.string().required(fomatedText('requiredError')),
       email: yup
         .string()
-        .required(formatedText('requiredError'))
-        .email("Please enter Valid Email!"),
-      position: yup.string().required("Position is Required!"),
-      gender: yup.string().required("Gender is Required!"),
+        .required(fomatedText('requiredError'))
+        .email(fomatedText('emailInvalid')),
+      position: yup.string().required(fomatedText('requiredError')),
+      gender: yup.string().required(fomatedText('requiredError')),
       password: yup
         .string()
-        .required(formatedText('requiredError'))
-        .min(8, "Minimum Eight characters")
+        .required(fomatedText('requiredError'))
+        .min(8, fomatedText('passwordLength'))
         .matches(
           paswordRegex,
-          "Password Should Contain at least one upper case English letter, one lower case English letter, one number and one special character"
-        ),
+          fomatedText('passwordInvalid')        ),
       confirmPassword: yup
         .string()
-        .required(formatedText('requiredError'))
-        .oneOf([yup.ref("password"), null], "Passwords must match"),
-      country: yup.string().required("Country is Required!"),
-      city: yup.string().required("City is Required!"),
+        .required(fomatedText('requiredError'))
+        .oneOf([yup.ref("password"), null],fomatedText('confirmPasswordInavlid')),
+      country: yup.string().required(fomatedText('requiredError')),
+      city: yup.string().required(fomatedText('requiredError')),
     })
     .required();
 
@@ -96,16 +96,16 @@ function Form() {
         <Grid item xs={6}>
           <InputField
             register={{ ...register("fullName") }}
-            label={t("name")}
-            placeHolder={`${placeHolder} ${formatedText("name")}`}
+            label={fomatedText("name")}
+            placeHolder={`${placeHolder} ${fomatedText("name")}`}
             errors={errors.fullName}
           />
         </Grid>
         <Grid item xs={6}>
           <DropDown
             register={{ ...register("position") }}
-            placeHolder="__Please Select__"
-            label="Postition You Are Applying For"
+            placeHolder={fomatedText("select")}
+            label={fomatedText('position')}
             values={positiosn}
             errors={errors.position}
           />
@@ -113,39 +113,41 @@ function Form() {
         <Grid item xs={6}>
           <InputField
             register={{ ...register("email") }}
-            label={t("email")}
+            label={fomatedText("email")}
             errors={errors.email}
-            placeHolder={`${placeHolder} ${formatedText("email")}`}
+            placeHolder={`${placeHolder} ${fomatedText("email")}`}
           />
         </Grid>
         <Grid item xs={6}>
           <PhoneInputField
             register={{ ...register("phone") }}
-            label={t("phone")}
+            label={fomatedText("phone")}
             errors={errors.phone}
+            placeHolder={fomatedText("phone")}
+
           />
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("country") }}
-            label={t("country")}
-            placeHolder={`${placeHolder} ${formatedText("country")}`}
+            label={fomatedText("country")}
+            placeHolder={`${placeHolder} ${fomatedText("country")}`}
             errors={errors.country}
           />
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("city") }}
-            label={t("city")}
-            placeHolder={`${placeHolder} ${formatedText("city")}`}
+            label={fomatedText("city")}
+            placeHolder={`${placeHolder} ${fomatedText("city")}`}
             errors={errors.city}
           />
         </Grid>
         <Grid item xs={6}>
           <InputField
             register={{ ...register("password") }}
-            label={t("password")}
-            placeHolder={`${placeHolder} ${formatedText("password")}`}
+            label={fomatedText("password")}
+            placeHolder={`${placeHolder} ${fomatedText("password")}`}
             errors={errors.password}
             type="password"
           />
@@ -153,15 +155,15 @@ function Form() {
         <Grid item xs={6}>
           <InputField
             register={{ ...register("confirmPassword") }}
-            label={t("confirmPassword")}
-            placeHolder={`${placeHolder} ${formatedText("confirmPassword")}`}
+            label={fomatedText("confirmPassword")}
+            placeHolder={`${placeHolder} ${fomatedText("confirmPassword")}`}
             errors={errors.confirmPassword}
             type="password"
           />
         </Grid>
         <Grid item xs={12}>
           <RadioButtons
-            label={formatedText("gender")}
+            label={fomatedText("gender")}
             register={{ ...register("gender") }}
             genders={genders}
           />
@@ -177,7 +179,7 @@ function Form() {
         type="submit"
         variant="contained"
       >
-        {t("submit")}
+        {fomatedText("submit")}
       </Button>
     </form>
   );

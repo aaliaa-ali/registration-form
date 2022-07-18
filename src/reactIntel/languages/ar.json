@@ -19,6 +19,12 @@
   "other": "اخر",
   "preferNotToSay": "Prefer not to say",
 
-  "requiredError":"!هذا الحقل مطلوب"
+  "requiredError":"!هذا الحقل مطلوب",
+  "select":"--برجاء الاختيار--",
+  "emailInvalid":"برجاء ادخال بريد الكتروني صحيح",
+  "nameInvalid":"برجاء ادخال حروف و ارقام فقط",
+  "confirmPasswordInavlid":"الرمز التأكيدي غير مطابق",
+  "passwordLength":"الرمز السري لايقل عن 8 احرف",
+  "passwordInvalid":"الرمزالسري يجب ان يحتوي علي حروف و ارقام و رموز خاصه"
 
 }

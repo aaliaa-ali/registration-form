@@ -16,7 +16,11 @@
   "femele": "Femele",
   "other": "Other",
   "preferNotToSay": "Prefer not to say",
-  "requiredError":"This Field Is Required"
-
-
+  "requiredError": "This Field Is Required",
+  "select": "__please Select__",
+  "emailInvalid": "Please enter Valid Email!",
+  "nameInvalid": "Full Name accept characters and Numbers only",
+  "confirmPasswordInavlid": "اPasswords must match",
+  "passwordLength": "Minimum Eight characters",
+  "passwordInvalid": "Password Should Contain at least one upper case English letter, one lower case English letter, one number and one special charactes"
 }

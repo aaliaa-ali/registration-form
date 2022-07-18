@@ -1,22 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import Form from "./components/Form";
 import LanguageToggler from "./LanguageToggler";
-import {FormattedMessage} from 'react-intl'
+import { FormattedMessage } from "react-intl";
+import { Context } from "./Wrapper";
+import img from '../assets/imgs/img.jpeg'
+
 function Index() {
+  const langContext = useContext(Context);
+  const lang = langContext.usersLocale;
 
   return (
     <Box sx={{ flexGrow: 1, px: 10 }}>
-      <Grid container spacing={2}>
+      <Grid dir={ lang=='en'?'ltr':'rtl'} container spacing={2}>
         <Grid item xs={5}>
           <Box
             sx={{
               backgroundImage:
-                "url(https://th.bing.com/th/id/OIP.rHfngg7xoXexzqluWs7QGwAAAA?pid=ImgDet&w=320&h=438&rs=1)",
+                `url(${img})`,
               backgroundPosition: "center",
-              backgroundSize: "contain",
+              backgroundSize: "cover",
               width: "100%",
               height: "100%",
               backgroundRepeat: "no-repeat",
@@ -30,11 +35,17 @@ function Index() {
         </Grid>
         <Grid item xs={7}>
           <Box sx={{ m: 5 }}>
-            <Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <Typography variant="h4" sx={{ py: 2, fontWeight: "bold" }}>
-                <FormattedMessage id="register"/>
-                <LanguageToggler />
+                <FormattedMessage id="register" />
               </Typography>
+              <LanguageToggler />
             </Box>
             <Form />
           </Box>

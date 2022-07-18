@@ -7,7 +7,7 @@ import Label from "./Label";
 import PhoneInput from "react-phone-number-input";
 
 function PhoneInputField(props) {
-  const { label, register, errors } = props;
+  const { label, register, errors,placeHolder } = props;
 
   const [value, setValue] = useState();
 
@@ -19,6 +19,7 @@ function PhoneInputField(props) {
         international
         value={value}
         onChange={setValue}
+        placeholder={placeHolder}
       />
       {errors && !value ? <p className="error">{errors?.message}</p> : ""}
       {!isValidPhoneNumber(`${value}`)&&value ? (
