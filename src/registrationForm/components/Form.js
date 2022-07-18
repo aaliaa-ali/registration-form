@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import InputField from "./InputField";
+import InputField from "./reusableComponents/InputField";
 import Grid from "@mui/material/Grid";
 import { useForm } from "react-hook-form";
-import DropDown from "./DropDown";
+import DropDown from "./reusableComponents/DropDown";
 import { Button } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "react-phone-number-input/style.css";
-import RadioButtons from "./RadioButton";
-import PhoneInputField from "./PhoneInputField";
+import RadioButtons from "./reusableComponents/RadioButton";
+import PhoneInputField from "./reusableComponents/PhoneInputField";
 import { useTranslation } from "react-i18next";
 import { FormattedMessage, useIntl } from "react-intl";
 

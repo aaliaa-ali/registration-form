@@ -6,20 +6,27 @@ import Form from "./components/Form";
 import LanguageToggler from "./LanguageToggler";
 import { FormattedMessage } from "react-intl";
 import { Context } from "./Wrapper";
-import img from '../assets/imgs/img.jpeg'
+import img from "../assets/imgs/img.jpeg";
 
 function Index() {
   const langContext = useContext(Context);
   const lang = langContext.usersLocale;
 
   return (
-    <Box sx={{ flexGrow: 1, px: 10 }}>
-      <Grid dir={ lang=='en'?'ltr':'rtl'} container spacing={2}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        px: 10,
+        minHeight: "100vh",
+        alignItems: "center",
+        display: "flex",
+      }}
+    >
+      <Grid dir={lang == "en" ? "ltr" : "rtl"} container spacing={2}>
         <Grid item xs={5}>
           <Box
             sx={{
-              backgroundImage:
-                `url(${img})`,
+              backgroundImage: `url(${img})`,
               backgroundPosition: "center",
               backgroundSize: "cover",
               width: "100%",
