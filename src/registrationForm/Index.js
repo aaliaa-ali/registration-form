@@ -32,11 +32,11 @@ function Index() {
         </Grid>
         <Grid item xs={7}>
           <Box sx={{ m: 5 }}>
-            <Box>
+            <Box sx={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
               <Typography variant="h4" sx={{ py: 2, fontWeight: "bold" }}>
                 {t("register")}
-                <LanguageToggler />
               </Typography>
+              <LanguageToggler />
             </Box>
             <Form />
           </Box>

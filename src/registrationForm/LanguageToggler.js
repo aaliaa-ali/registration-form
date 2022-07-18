@@ -8,11 +8,11 @@ const LanguageToggler = () => {
   }
 
   return (
-    <div className="footer">
-      <button onClick={changeLanguage} value="en">
+    <div>
+      <button className="langButtons"  onClick={changeLanguage} value="en">
         en
       </button>
-      <button onClick={changeLanguage} value="ar">
+      <button className="langButtons" onClick={changeLanguage} value="ar">
         ar
       </button>
     </div>

@@ -8,7 +8,7 @@ import { Typography } from "@mui/material";
 import Label from "./Label";
 
 function DropDown(props) {
-  const { placeHolder, label, register, values } = props;
+  const { placeHolder, label, register, values, errors } = props;
 
   const [age, setAge] = React.useState("");
 
@@ -40,6 +40,7 @@ function DropDown(props) {
           })}
         </Select>
       </FormControl>
+      {errors ? <p className="error">{errors?.message}</p> : ""}
     </div>
   );
 }

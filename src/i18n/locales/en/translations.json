@@ -12,13 +12,21 @@
     "city": "City",
     "submit": "Submit"
   },
-
+  "error": {
+    "required": "Field is Required!",
+    "email": "Please enter Valid Email!",
+    "country": "",
+    "city": "",
+    "gender": "",
+    "phone": "Phone is Required!",
+    "password": "",
+    "confirmPassword": ""
+  },
   "placeHolder": "Please Enter Your",
-"gender":{
+  "gender": {
     "male": "Male",
     "femele": "Femele",
     "other": "Other",
     "preferNotToSay": "Prefer not to say"
-}
-  
+  }
 }

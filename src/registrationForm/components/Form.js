@@ -98,7 +98,7 @@ function Form() {
         <Grid item xs={6}>
           <DropDown
             register={{ ...register("position") }}
-            placeHolder="--Please Select--"
+            placeHolder="__Please Select__"
             label="Postition You Are Applying For"
             values={positiosn}
             errors={errors.position}

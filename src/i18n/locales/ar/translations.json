@@ -11,13 +11,24 @@
     "gender": "النوع",
     "city": "المدينه"
   },
-
-  "submit": "المتابعه",
-  "placeHolder": "برجاء ادخال",
   "gender": {
     "male": "ذكر",
     "femele": "انثي",
     "other": "اخر",
-    "preferNotToSay": "Prefer not to say"
-  }
+    "preferNotToSay": "عدم الذكر"
+  },
+  "error": {
+    "required": "هذا الحقل مطلوب",
+    "name": "",
+    "email": "",
+    "country": "",
+    "city": "",
+    "gender": "",
+    "phone": "",
+    "password": "",
+    "confirmPassword": ""
+  },
+
+  "submit": "المتابعه",
+  "placeHolder": "برجاء ادخال"
 }

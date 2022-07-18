@@ -11,18 +11,19 @@ function PhoneInputField(props) {
 
   const [value, setValue] = useState();
 
+  console.log("value", value);
   return (
     <div>
       <Label label={label} />
       <PhoneInput
         {...register}
         international
-        defaultCountry="RU"
         value={value}
         onChange={setValue}
+        onCountryChange={setValue}
       />
       {errors ? <p className="error">{errors?.message}</p> : ""}
-      {!isValidPhoneNumber(`${value}`)&&errors ? (
+      {!isValidPhoneNumber(`${value}`) && value ? (
         <p className="error">Invalid Phone Number</p>
       ) : (
         ""

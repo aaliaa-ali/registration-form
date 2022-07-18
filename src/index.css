@@ -9,3 +9,9 @@ input {
   color: red;
   font-size: 13px;
 }
+.langButtons{
+  border-radius:50% ;
+  border: 0;
+  padding: 5px;
+  margin: 0 5px;
+}
